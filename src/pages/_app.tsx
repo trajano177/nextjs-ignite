@@ -1,4 +1,4 @@
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: any): JSX.Element {
   return <Component {...pageProps} />
 }
 
