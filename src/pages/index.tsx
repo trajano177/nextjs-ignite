@@ -2,7 +2,7 @@ import { styled } from "@stitches/react"
 
 
 const Button = styled('button', {
-  backgroundCollor: '$green500',
+  backgroundColor: '$green500',
   borderRadius: 4,
   border: 0,
   padding: '4px 8px',
@@ -11,7 +11,7 @@ const Button = styled('button', {
     fontWeight: 'bold',
   },
   '&:hover': {
-    filter: 'brightness(0)'
+    filter: 'brightness(0.8)'
   },
 })
 
