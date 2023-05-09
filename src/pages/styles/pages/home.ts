@@ -50,12 +50,11 @@ export const Product = styled('div', {
             fontWeight: 'bold',
             color: '$green300'
         },
-
-        '&:hover': {
-            footer: {
-                transform: 'translateY(0%)',
-                opacity: 1,
-            }
+    },
+    '&:hover': {
+        footer: {
+            transform: 'translateY(0%)',
+            opacity: 1,
         }
     }
 })
