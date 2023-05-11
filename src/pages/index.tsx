@@ -10,15 +10,17 @@ import 'keen-slider/keen-slider.min.css'
 
 
 
-export default function Home() {
+export default function Home(props) {
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
       spacing: 48
     }
   })
+
   return (
     <HomeConatiner ref={sliderRef} className="keen-slider">
+     <pre>{JSON.stringify(props.list)}</pre>
       <Product  className="keen-slider__slide">
         <Image src={camiseta1} width={520} height={480} alt="#"/>
         
@@ -48,4 +50,13 @@ export default function Home() {
       
     </HomeConatiner>
   )
+}
+
+export const getServerSideProps = async () => {
+  const response = await stripe.products.list()
+  return {
+    props: {
+      list: [1, 2, 3]
+    }
+  }
 }
