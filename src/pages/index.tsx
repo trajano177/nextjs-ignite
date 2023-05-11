@@ -6,11 +6,13 @@ import camiseta3 from "../pages/assets/camisetas/3.png";
 
 import {useKeenSlider} from "keen-slider/react"
 import 'keen-slider/keen-slider.min.css'
+import { GetServerSideProps } from "next";
+import {stripe} from "../pages/lib/stripe"
 
 
 
 
-export default function Home(props) {
+export default function Home(props: any) {
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
@@ -52,7 +54,7 @@ export default function Home(props) {
   )
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const response = await stripe.products.list()
   return {
     props: {
