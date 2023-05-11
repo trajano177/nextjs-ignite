@@ -8,11 +8,20 @@ import { useKeenSlider } from "keen-slider/react"
 import 'keen-slider/keen-slider.min.css'
 import { GetServerSideProps } from "next";
 import { stripe } from "../pages/lib/stripe"
+import Stripe from "stripe";
+import Products from './product/[id]';
+
+interface HomeProps {
+  products: {
+    id: string;
+    name: string;
+    imageURL: string;
+    price: number;
+  }
+}
 
 
-
-
-export default function Home(props: any) {
+export default function Home({ products }) {
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
@@ -55,10 +64,21 @@ export default function Home(props: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await stripe.products.list()
+  const response = await stripe.products.list({
+    expand: ['data.default_price']
+  })
+  const products = response.data.map(product => {
+    const price = product.default_price as Stripe.Price
+    return {
+      id: product.id,
+      name: product.name,
+      imageURL: product.images[0],
+      price: price.unit_amount / 100,
+    }
+  })
   return {
     props: {
-      list: [1, 2, 3]
+      products
     }
   }
 }
