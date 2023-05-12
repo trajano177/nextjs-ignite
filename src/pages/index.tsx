@@ -9,19 +9,17 @@ import 'keen-slider/keen-slider.min.css'
 import { GetServerSideProps } from "next";
 import { stripe } from "../pages/lib/stripe"
 import Stripe from "stripe";
-import Products from './product/[id]';
-
 interface HomeProps {
   products: {
     id: string;
     name: string;
     imageURL: string;
     price: number;
-  }
+  }[]
 }
 
 
-export default function Home({ products }) {
+export default function Home({ products }: HomeProps) {
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
@@ -31,33 +29,18 @@ export default function Home({ products }) {
 
   return (
     <HomeConatiner ref={sliderRef} className="keen-slider">
-      <pre>{JSON.stringify(props.list)}</pre>
-      <Product className="keen-slider__slide">
-        <Image src={camiseta1} width={520} height={480} alt="#" />
+      {products.map((product) => {
+        return (
+          <Product key={product.id} className="keen-slider__slide">
+            <Image src={camiseta1} width={520} height={480} alt="#" />
 
-        <footer>
-          <strong>Camiseta X</strong>
-          <span>R$ 79,90</span>
-        </footer>
-      </Product>
-
-      <Product className="keen-slider__slide">
-        <Image src={camiseta2} width={520} height={480} alt="#" />
-
-        <footer>
-          <strong>Camiseta X</strong>
-          <span>R$ 79,90</span>
-        </footer>
-      </Product>
-
-      <Product className="keen-slider__slide">
-        <Image src={camiseta3} width={520} height={480} alt="#" />
-
-        <footer>
-          <strong>Camiseta X</strong>
-          <span>R$ 79,90</span>
-        </footer>
-      </Product>
+            <footer>
+              <strong>{product.name}</strong>
+              <span>{product.price}</span>
+            </footer>
+          </Product>
+        )
+      })}
 
     </HomeConatiner>
   )
@@ -73,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       id: product.id,
       name: product.name,
       imageURL: product.images[0],
-      price: price.unit_amount / 100,
+      price: price.unit_amount,
     }
   })
   return {
