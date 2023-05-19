@@ -1,16 +1,10 @@
 import { HomeConatiner, Product } from "./styles/pages/home"
 import Image from "next/image";
-import camiseta1 from "../pages/assets/camisetas/1.png";
-import camiseta2 from "../pages/assets/camisetas/2.png"
-import camiseta3 from "../pages/assets/camisetas/3.png";
-
 import { useKeenSlider } from "keen-slider/react"
 import 'keen-slider/keen-slider.min.css'
 import { GetStaticProps } from "next";
 import { stripe } from "../pages/lib/stripe"
 import Stripe from "stripe";
-import Products from './product/[id]';
-
 interface HomeProps {
   products: {
     id: string;
@@ -24,7 +18,7 @@ interface HomeProps {
 export default function Home({ products }: HomeProps) {
   const [sliderRef] = useKeenSlider({
     slides: {
-      perView: 3,
+      perView: 4,
       spacing: 48
     }
   })
@@ -34,7 +28,7 @@ export default function Home({ products }: HomeProps) {
       {products.map( product => {
         return (
       <Product key={product.id} className="keen-slider__slide">
-        <Image src={product.images} width={520} height={480} alt="#" />
+        <Image src={product.imageURL} width={520} height={480} alt="#" />
 
         <footer>
           <strong>{product.name}</strong>
