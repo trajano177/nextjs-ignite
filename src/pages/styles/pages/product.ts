@@ -52,7 +52,17 @@ export const ProductDetails = styled('main', {
     },
 
     button: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent:'center',
+        alignItems: 'center',
         marginTop: 'auto',
-        
+        borderRadius: 8,
+        maxWidth: 520,
+        height: 69,
+        background:'$green300',
+        fontSize: '$md',
+        color: '$gray300'
+
     }
 })
