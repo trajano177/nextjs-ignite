@@ -16,7 +16,7 @@ export const ImageContainer = styled('div', {
     background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
     borderRadius: 8,
     height: 656,
-    padding:' 0.25rem',
+    padding: ' 0.25rem',
 
     display: 'flex',
     alignItems: 'center',
@@ -41,7 +41,7 @@ export const ProductDetails = styled('main', {
         marginTop: '1rem',
         display: 'flex',
         fontSize: '$2xl',
-        color:'$green300'
+        color: '$green300'
     },
 
     p: {
@@ -52,17 +52,18 @@ export const ProductDetails = styled('main', {
     },
 
     button: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent:'center',
-        alignItems: 'center',
         marginTop: 'auto',
+        broder: 0,
         borderRadius: 8,
-        maxWidth: 520,
-        height: 69,
-        background:'$green300',
+        backgroundColor: '$green500',
+        fontWeight: 'bold',
+        color: 'white',
+        padding: '1.25rem',
+        cursor: 'pointer',
         fontSize: '$md',
-        color: '$gray300'
+         '&:hover': {
+            backgroundColor: '$green300'
+        }
 
-    }
+    },
 })
