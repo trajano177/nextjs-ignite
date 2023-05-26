@@ -65,6 +65,8 @@ export const getStaticProps: GetStaticProps = async () => {
       }).format(unitAmount / 100)
     }
   })
+  console.log(response.data);
+  
   return {
     props: {
       products

@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import { ImageContainer, ProductContainer, ProductDetails } from '../styles/pages/product'
-import { GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import Stripe from 'stripe';
 import { stripe } from '../lib/stripe';
-
+import Image from 'next/image';
 interface Productprops {
   product: {
     id: string;
@@ -20,7 +20,7 @@ export default function Products({product}: Productprops) {
   return (
     <ProductContainer>
       <ImageContainer>
-
+        <Image src={product.imageURL} width={520} height={480} alt="#"/>
       </ImageContainer>
 
       <ProductDetails>
@@ -35,8 +35,31 @@ export default function Products({product}: Productprops) {
   )
 }
 
-export const getStaticProps: GetStaticProps<any, {id: string}> = async ({ params }) => {
-  const productId = params.id;
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Obtenha os IDs dos produtos do seu banco de dados ou de qualquer fonte de dados
+  const productIds = ["product1", "product2", "product3"];
+
+  const paths = productIds.map((id) => ({
+    params: { id },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps<any, {id: string}> = async ({ params}) => {
+  const productId = params?.id || '';
+  
+  
+  if (!productId) {
+    return {
+      notFound: true,
+    };
+  }
+ 
+  
 
   const product = await stripe.products.retrieve(productId, {
     expand: ['default_price']
@@ -59,6 +82,6 @@ export const getStaticProps: GetStaticProps<any, {id: string}> = async ({ params
           description: product.description
       }
     },
-    revalidade: 60*60 * 1 
+    revalidate: 60*60 * 1 
   }
 }
