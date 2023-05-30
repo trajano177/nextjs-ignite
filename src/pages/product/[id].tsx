@@ -16,8 +16,13 @@ interface Productprops {
 }
 
 export default function Products({product}: Productprops) {
-  function handlePrice () {
-    console.log(product.defaultPriceId)
+  async function handlePrice () {
+   try {
+
+   } catch(err) {
+    //conectar com alguma ferramenta de observabilidade Datadog / Sentry
+    alert('Falha ao redirecionar ao checkout')
+   }
   }
   // Query vem de dentro do useRouter
   const { query } = useRouter()
