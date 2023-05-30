@@ -37,7 +37,7 @@ export default function Products({product}: Productprops) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // Obtenha os IDs dos produtos do seu banco de dados ou de qualquer fonte de dados
-  const productIds = ["prod_Nrd9SyQDs3GqQh", "prod_Nrd8h8H0xMkyZ4", "prod_Nrd5cNDdOeU1pt", "prod_Nrd4tcTVXjFwlM"];
+  const productIds = ["prod_Nrd9SyQDs3GqQh"];
 
   const paths = productIds.map((id) => ({
     params: { id },
@@ -45,7 +45,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 
