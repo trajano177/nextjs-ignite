@@ -11,10 +11,14 @@ interface Productprops {
     imageURL: string;
     price: string;
     description: string;
+    defaultPriceId: string;
   }
 }
 
 export default function Products({product}: Productprops) {
+  function handlePrice () {
+    console.log(product.defaultPriceId)
+  }
   // Query vem de dentro do useRouter
   const { query } = useRouter()
   return (
@@ -28,7 +32,7 @@ export default function Products({product}: Productprops) {
         <span>{product.price}</span>
 
         <p>{product.description}</p>
-       <button>Compre agora </button>
+       <button onClick={handlePrice}>Compre agora </button>
       </ProductDetails>
 
     </ProductContainer>
@@ -79,7 +83,8 @@ export const getStaticProps: GetStaticProps<any, {id: string}> = async ({ params
             style: 'currency',
             currency: 'BRL',
           }).format(unitAmount / 100),
-          description: product.description
+          description: product.description,
+          defaultPriceId: price.id,
       }
     },
     revalidate: 60*60 * 1 
