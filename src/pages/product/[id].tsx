@@ -5,6 +5,7 @@ import Stripe from 'stripe';
 import { stripe } from '../lib/stripe';
 import Image from 'next/image';
 import axios from 'axios';
+import { useState } from 'react';
 interface Productprops {
   product: {
     id: string;
@@ -17,8 +18,10 @@ interface Productprops {
 }
 
 export default function Products({product}: Productprops) {
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
   async function handlePrice () {
    try {
+    setIsCreatingCheckoutSession(true)
     const response = await axios.post('/api/checkout', {
       priceId: product.defaultPriceId,
     })
@@ -26,12 +29,12 @@ export default function Products({product}: Productprops) {
     const {checkoutUrl} = response.data
     window.location.href= checkoutUrl
    } catch(err) {
+    setIsCreatingCheckoutSession(false)
     //conectar com alguma ferramenta de observabilidade Datadog / Sentry
     alert('Falha ao redirecionar ao checkout')
    }
   }
   // Query vem de dentro do useRouter
-  const { query } = useRouter()
   return (
     <ProductContainer>
       <ImageContainer>
@@ -43,7 +46,7 @@ export default function Products({product}: Productprops) {
         <span>{product.price}</span>
 
         <p>{product.description}</p>
-       <button onClick={handlePrice}>Compre agora </button>
+       <button disabled={isCreatingCheckoutSession} onClick={handlePrice}>Compre agora </button>
       </ProductDetails>
 
     </ProductContainer>
