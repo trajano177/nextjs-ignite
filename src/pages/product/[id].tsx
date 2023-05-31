@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router'
 import { ImageContainer, ProductContainer, ProductDetails } from '../styles/pages/product'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Stripe from 'stripe';
-import { stripe } from '../lib/stripe';
+import { stripe } from '../../lib/stripe';
 import Image from 'next/image';
+import axios from 'axios';
 interface Productprops {
   product: {
     id: string;
@@ -18,14 +18,19 @@ interface Productprops {
 export default function Products({product}: Productprops) {
   async function handlePrice () {
    try {
+      const response = await axios.post('/api/checkout', {
+        priceId: product.defaultPriceId
+      })
 
+      const {checkoutUrl} = response.data;
+  
+      window.location.href = checkoutUrl
    } catch(err) {
     //conectar com alguma ferramenta de observabilidade Datadog / Sentry
     alert('Falha ao redirecionar ao checkout')
    }
   }
   // Query vem de dentro do useRouter
-  const { query } = useRouter()
   return (
     <ProductContainer>
       <ImageContainer>
