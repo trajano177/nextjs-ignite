@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useKeenSlider } from "keen-slider/react"
 import 'keen-slider/keen-slider.min.css'
 import { GetStaticProps } from "next";
-import { stripe } from "../pages/lib/stripe"
+import { stripe } from "../lib/stripe"
 import Stripe from "stripe";
 import Link from "next/link";
 interface HomeProps {
