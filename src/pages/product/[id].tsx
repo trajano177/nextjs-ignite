@@ -1,11 +1,8 @@
-import { useRouter } from 'next/router'
 import { ImageContainer, ProductContainer, ProductDetails } from '../styles/pages/product'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Stripe from 'stripe';
-import { stripe } from '../lib/stripe';
+import { stripe } from '../../lib/stripe';
 import Image from 'next/image';
-import axios from 'axios';
-import { useState } from 'react';
 interface Productprops {
   product: {
     id: string;
@@ -21,13 +18,7 @@ export default function Products({product}: Productprops) {
   const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
   async function handlePrice () {
    try {
-    setIsCreatingCheckoutSession(true)
-    const response = await axios.post('/api/checkout', {
-      priceId: product.defaultPriceId,
-    })
 
-    const {checkoutUrl} = response.data
-    window.location.href= checkoutUrl
    } catch(err) {
     setIsCreatingCheckoutSession(false)
     //conectar com alguma ferramenta de observabilidade Datadog / Sentry

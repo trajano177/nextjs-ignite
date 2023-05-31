@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { stripe } from "../lib/stripe";
+import { stripe } from "../../lib/stripe";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {priceId} = req.body;
@@ -26,6 +26,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     ]
   })
+
+  console.log(handler)
 
   return res.status(201).json({
     checkoutUrl: checkoutSession.url
