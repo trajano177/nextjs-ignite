@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
 
-  const success_url =`${urls.NEXT_URL}/success`;
+  const success_url =`${urls.NEXT_URL}/success?session_id={CHECKOUT_SESSION_ID}`;
   const cancel_url =`${urls.NEXT_URL}/`;
   console.log(success_url);
   
