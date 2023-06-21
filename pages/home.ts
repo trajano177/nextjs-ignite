@@ -1,4 +1,4 @@
-import { styled } from "..";
+import { styled } from "../src/pages/styles";
 
 export const HomeConatiner = styled('main', {
     display: 'flex',

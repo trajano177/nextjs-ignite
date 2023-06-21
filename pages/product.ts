@@ -1,4 +1,4 @@
-import { styled } from "..";
+import { styled } from "../src/pages/styles";
 
 export const ProductContainer = styled('main', {
     display: 'grid',

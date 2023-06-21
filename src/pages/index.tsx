@@ -1,4 +1,4 @@
-import { HomeConatiner, Product } from "./styles/pages/home"
+import { HomeConatiner, Product } from "../../pages/home"
 import Image from "next/image";
 import { useKeenSlider } from "keen-slider/react"
 import 'keen-slider/keen-slider.min.css'

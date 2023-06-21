@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {ImageConatiner, SuccessConatiner } from "./styles/pages/success";
+import {ImageConatiner, SuccessConatiner } from "../../pages/success";
 import { GetServerSideProps } from "next";
 import { stripe } from "../lib/stripe";
 import Stripe from "stripe";

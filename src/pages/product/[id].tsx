@@ -1,4 +1,4 @@
-import { ImageContainer, ProductContainer, ProductDetails } from '../styles/pages/product'
+import { ImageContainer, ProductContainer, ProductDetails } from '../../../pages/product'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Stripe from 'stripe';
 import { stripe } from '../../lib/stripe';
