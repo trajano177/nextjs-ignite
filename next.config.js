@@ -6,7 +6,9 @@ const nextConfig = {
     domains: [
       'files.stripe.com'
     ]
-  }
+  },
+    pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
+  
 }
 
 module.exports = nextConfig
