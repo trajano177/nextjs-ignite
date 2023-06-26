@@ -34,6 +34,8 @@ export default function Products({product}: Productprops) {
    }
   }
 
+  
+
   // Query vem de dentro do useRouter
   return (
     <ProductContainer>
