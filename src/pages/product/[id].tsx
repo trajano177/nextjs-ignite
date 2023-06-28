@@ -33,7 +33,7 @@ export default function Products({product}: Productprops) {
     alert('Falha ao redirecionar ao checkout')
    }
   }
-  console.log(handlePrice);
+ 
   
   
 
