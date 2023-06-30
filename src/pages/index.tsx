@@ -23,6 +23,7 @@ export default function Home({ products }: HomeProps) {
       spacing: 48
     }
   })
+  console.log(useKeenSlider)
 
   return (
     <HomeConatiner ref={sliderRef} className="keen-slider">
