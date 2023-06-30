@@ -48,6 +48,7 @@ export default function Home({ products }: HomeProps) {
     </HomeConatiner>
   )
 }
+console.log(Home)
 
 export const getStaticProps: GetStaticProps = async () => {
   const response = await stripe.products.list({
