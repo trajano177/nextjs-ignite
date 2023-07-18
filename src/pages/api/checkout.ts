@@ -5,7 +5,6 @@ import { urls } from "@/src/envaironments/apikeys";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {priceId} = req.body;
   
-  
   if (req.method !== 'POST') {
     return res.status(405)
   }
